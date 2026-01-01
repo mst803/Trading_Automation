@@ -1,0 +1,6 @@
+yfinance==1.0
+kiteconnect==5.0.1
+langchain-core==1.2.5
+perplexityai==0.22.2
+python-dotenv==1.0.1
+pydantic==2.10.6
