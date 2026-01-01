@@ -1,7 +1,7 @@
 name: Daily Trading Bot
 on:
   schedule:
-    - cron: '15 05 * * 1-5'  # 9:30 AM IST, Mon-Fri (04:00 UTC) 00 04 * * 1-5
+    - cron: '00 04 * * 1-5'  # 9:30 AM IST, Mon-Fri (04:00 UTC) 00 04 * * 1-5
 jobs:
   run_bot:
     runs-on: ubuntu-latest
