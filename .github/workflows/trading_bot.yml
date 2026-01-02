@@ -1,7 +1,7 @@
 name: Daily Trading Bot
 on:
   schedule:
-    - cron: '00 04 * * 1-5'  # 9:30 AM IST, Mon-Fri (04:00 UTC) 00 04 * * 1-5
+    - cron: '00 04 * * 1-5'  # 9:30 AM IST, Mon-Fri (04:00 UTC)
 jobs:
   run_bot:
     runs-on: ubuntu-latest
@@ -13,4 +13,4 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Run trading bot
-        run: python trading_bot.py
+        run: python trading_automation.py
