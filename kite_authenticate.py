@@ -10,10 +10,18 @@ TOTP_SECRET = os.getenv("TOTP_SECRET")
 
 def request_token_generator(input_url):
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(
+            headless=True,
+            args=[
+                "--disable-blink-features=AutomationControlled",
+                "--no-sandbox",
+                "--disable-dev-shm-usage",
+            ],
+        )
+
         page = browser.new_page()
 
-        page.goto(input_url)
+        page.goto(input_url, wait_until="networkidle")
         time.sleep(5)
         page.fill("#userid", "LCK461")
         page.fill("#password", "Shahil@120")
