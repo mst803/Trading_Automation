@@ -193,5 +193,5 @@ if __name__ == "__main__":
         interval=360
     )
 
-    bot.login()
+    # bot.login()
     # bot.run()
