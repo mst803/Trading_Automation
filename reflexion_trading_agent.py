@@ -2,7 +2,7 @@ import os
 import yfinance as yf
 from langchain_core.output_parsers import PydanticOutputParser
 from schema_reflexion import TradingSignal
-from langchain_perplexity import ChatPerplexity
+# from langchain_perplexity import ChatPerplexity
 from perplexity import Perplexity
 from datetime import datetime
 from time import sleep
