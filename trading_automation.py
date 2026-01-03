@@ -194,4 +194,4 @@ if __name__ == "__main__":
     )
 
     bot.login()
-    bot.run()
+    # bot.run()

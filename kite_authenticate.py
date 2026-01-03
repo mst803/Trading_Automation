@@ -14,6 +14,7 @@ def request_token_generator(input_url):
         page = browser.new_page()
 
         page.goto(input_url)
+        time.sleep(5)
         page.fill("#userid", "LCK461")
         page.fill("#password", "Shahil@120")
         page.click("button[type=submit]")
