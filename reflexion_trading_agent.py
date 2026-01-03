@@ -14,11 +14,11 @@ load_dotenv()
 #     def _generate(self, messages, stop=None, **kwargs):
 #         return super()._generate(messages, stop=None, **kwargs)
 
-# llm = CustomPerplexity(api_key=os.environ.get("PERPLEXITY_API_KEY"), temperature=0, model="sonar-deep-research") #sonar-deep-research
-# llm_mini = CustomPerplexity(api_key=os.environ.get("PERPLEXITY_API_KEY"), temperature=0, model="sonar")
+# llm = CustomPerplexity(api_key=os.getenv("PERPLEXITY_API_KEY"), temperature=0, model="sonar-deep-research") #sonar-deep-research
+# llm_mini = CustomPerplexity(api_key=os.getenv("PERPLEXITY_API_KEY"), temperature=0, model="sonar")
 
 
-client = Perplexity(api_key=os.environ.get("PERPLEXITY_API_KEY"))
+client = Perplexity(api_key=os.getenv("PERPLEXITY_API_KEY"))
 
 def get_responce(prompt: str, model: str = "sonar-pro"):
     res = client.chat.completions.create(

@@ -5,6 +5,7 @@ from datetime import time as dt_time, datetime
 from reflexion_trading_agent import get_signal
 import yfinance as yf
 from kiteconnect import KiteConnect
+from kite_authenticate import request_token_generator
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -34,9 +35,7 @@ class TradingBot:
     # LOGIN
     # =========================
     def login(self):
-        print("\nLogin URL:", self.kite.login_url())
-        request_token = input("Enter request_token: ").strip()
-
+        request_token = request_token_generator(self.kite.login_url())
         data = self.kite.generate_session(request_token, self.api_secret)
         self.kite.set_access_token(data["access_token"])
         self.session_active = True
@@ -60,7 +59,7 @@ class TradingBot:
     # =========================
     def get_wallet(self):
         margins = self.kite.margins("equity")
-        return float(margins["available"]["intraday_payin"])
+        return float(margins["available"]["intraday_payin"])+float(margins["available"]["cash"])
 
     def calc_qty(self, ltp):
         cash = self.get_wallet()*0.95
@@ -119,6 +118,7 @@ class TradingBot:
                     logger.info("Market closed. Exiting.")
                     break
                 time.sleep(self.interval)
+                logger.info("Bot woke up, checking market...")
                 continue
 
             if (signal == "BUY" and self.position_qty>0) or (signal == "SELL" and self.position_qty<0):
@@ -187,10 +187,10 @@ class TradingBot:
 # =========================
 if __name__ == "__main__":
     bot = TradingBot(
-        api_key=os.environ.get("kite_api_key"),
-        api_secret=os.environ.get("kite_api_secret"),
+        api_key=os.getenv("kite_api_key"),
+        api_secret=os.getenv("kite_api_secret"),
         symbol="SUZLON",
-        interval=3600
+        interval=360
     )
 
     bot.login()
