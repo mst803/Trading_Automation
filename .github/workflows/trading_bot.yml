@@ -23,5 +23,7 @@ jobs:
           python-version: "3.11"
       - name: Install dependencies
         run: pip install -r requirements.txt
+      - name: Install Playwright browsers
+        run: playwright install chromium
       - name: Run trading bot
         run: python trading_automation.py
